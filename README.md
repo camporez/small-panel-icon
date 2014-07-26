@@ -11,3 +11,5 @@ A GNOME Shell extension to make the top panel application's icon smaller
 $ git clone https://github.com/camporez/SmallPanelIcon.git SmallPanelIcon
 $ mv SmallPanelIcon $HOME/.local/share/gnome-shell/extensions/SmallPanelIcon@camporez.com
 ~~~
+
+or via [extensions.gnome.org](https://extensions.gnome.org/extension/861/small-panel-icon/).
