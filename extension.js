@@ -1,15 +1,13 @@
-const Atk = imports.gi.Atk;
+/*
+    This code is based on https://github.com/emerinohdz/status-title-bar/blob/master/src/extension.js
+    Author: Ian Camporez Brunelli <ian at camporez dot com>
+    Project page: https://github.com/camporez/small-panel-icon
+*/
+
 const Clutter = imports.gi.Clutter;
 const Lang = imports.lang;
-const Meta = imports.gi.Meta;
-const St = imports.gi.St;
-const Util = imports.misc.util;
-
-const Shell = imports.gi.Shell;
 const Main = imports.ui.main;
 const Panel = imports.ui.panel;
-const Tweener = imports.ui.tweener;
-const PopupMenu = imports.ui.popupMenu;
 const PanelMenu = imports.ui.panelMenu;
 
 const PANEL_ICON_SIZE = 24;
@@ -27,7 +25,7 @@ const StatusTitleBarButton = new Lang.Class({
         if (!this._targetApp)
             return;
 
-        let icon = this._targetApp.get_faded_icon(1 * PANEL_ICON_SIZE, this._iconBox.text_direction);
+        let icon = this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction);
         this._iconBox.set_child(icon);
     },
     
@@ -105,9 +103,5 @@ let statusTitleBar = null;
 
 function init() {
     statusTitleBar = new StatusTitleBar();
-}
-
-function enable() {
     statusTitleBar.enable();
 }
-
