@@ -12,8 +12,8 @@ const PanelMenu = imports.ui.panelMenu;
 
 const PANEL_ICON_SIZE = 24;
 
-const StatusTitleBarButton = new Lang.Class({
-    Name: 'StatusTitleBarButton',
+const TopPanelButton = new Lang.Class({
+    Name: 'TopPanelButton',
     Extends: Panel.AppMenuButton,
 
     _init: function(panel) {
@@ -78,11 +78,15 @@ const StatusTitleBarButton = new Lang.Class({
 
 });
 
-const StatusTitleBar = new Lang.Class({
-    Name: 'StatusTitleBar',
+const TopPanel = new Lang.Class({
+    Name: 'TopPanel',
 
     enable: function() {
-        this._replaceAppMenu(new StatusTitleBarButton(Main.panel));
+        this._replaceAppMenu(new TopPanelButton(Main.panel));
+    },
+
+disable: function() {
+        this._replaceAppMenu(new Panel.AppMenuButton(Main.panel));
     },
 
     _replaceAppMenu: function(appMenu) {
@@ -99,9 +103,17 @@ const StatusTitleBar = new Lang.Class({
     }
 });
 
-let statusTitleBar = null; 
+let SmallPanelIcon = null; 
 
 function init() {
-    statusTitleBar = new StatusTitleBar();
-    statusTitleBar.enable();
+    SmallPanelIcon = new TopPanel();
+}
+
+function enable() {
+    SmallPanelIcon.enable();
+}
+
+function disable() {
+    SmallPanelIcon.disable();
+
 }
