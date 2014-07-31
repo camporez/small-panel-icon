@@ -31,8 +31,8 @@ const TopPanelButton = new Lang.Class({
     
     _getContentPreferredWidth: function(actor, forHeight, alloc) {
         let [minSize, naturalSize] = this._iconBox.get_preferred_width(forHeight);
-        alloc.min_size = minSize + Math.floor(PANEL_ICON_SIZE * 2);
-        alloc.natural_size = naturalSize + Math.floor(PANEL_ICON_SIZE * 2);
+        alloc.min_size = minSize + Math.floor(PANEL_ICON_SIZE * 2) + 20;
+        alloc.natural_size = naturalSize + Math.floor(PANEL_ICON_SIZE * 2) + 20;
         [minSize, naturalSize] = this._hbox.get_preferred_width(forHeight);
         alloc.min_size = alloc.min_size + Math.max(0, minSize - Math.floor(alloc.min_size / 2));
         alloc.natural_size = alloc.natural_size + Math.max(0, naturalSize - Math.floor(alloc.natural_size / 2));
@@ -51,10 +51,10 @@ const TopPanelButton = new Lang.Class({
         childBox.y1 = yPadding;
         childBox.y2 = childBox.y1 + Math.min(naturalHeight, allocHeight);
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = 0;
+            childBox.x1 = 10;
             childBox.x2 = childBox.x1 + Math.min(naturalWidth, allocWidth);
         } else {
-            childBox.x1 = Math.max(0, allocWidth - naturalWidth);
+            childBox.x1 = Math.max(10, allocWidth - naturalWidth);
             childBox.x2 = allocWidth;
         }
         this._iconBox.allocate(childBox, flags);
@@ -67,10 +67,10 @@ const TopPanelButton = new Lang.Class({
         childBox.y2 = allocHeight;
 
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = Math.floor(iconWidth + 3);
-            childBox.x2 = Math.floor(iconWidth + 3) + Math.min(childBox.x1 + naturalWidth, allocWidth);
+            childBox.x1 = Math.floor(iconWidth + 13);
+            childBox.x2 = Math.floor(iconWidth + 13) + Math.min(childBox.x1 + naturalWidth, allocWidth);
         } else {
-            childBox.x2 = allocWidth - Math.floor(iconWidth + 3);
+            childBox.x2 = allocWidth - Math.floor(iconWidth + 13);
             childBox.x1 = Math.max(0, childBox.x2 - naturalWidth);
         }
         this._hbox.allocate(childBox, flags);

@@ -1,12 +1,12 @@
 {
-	"uuid": "SmallPanelIcon@camporez.com", 
-	"name": "Small Panel Icon", 
-	"shell-version": [
+    "uuid": "SmallPanelIcon@camporez.com", 
+    "name": "Small Panel Icon", 
+    "shell-version": [
         "3.8",
         "3.10",
         "3.12"
-	], 
-	"description": "Makes the top panel application's icon smaller",
+    ], 
+    "description": "Makes the top panel application's icon smaller",
     "version": 1,
     "url":"https://github.com/camporez/small-panel-icon"
 }
