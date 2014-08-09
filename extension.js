@@ -5,8 +5,6 @@
 */
 
 const Clutter = imports.gi.Clutter;
-const GLib = imports.gi.GLib;
-const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 const Main = imports.ui.main;
 const Panel = imports.ui.panel;
@@ -28,9 +26,7 @@ const TopPanelButton = new Lang.Class({
         if (!this._targetApp)
             return;
 
-		let currentApp = this._targetApp.get_app_info()
-        let icon = new St.Icon({ gicon: currentApp.get_icon(),
-                         icon_size: PANEL_ICON_SIZE });
+        let icon = new St.Icon({ gicon: this._targetApp.get_app_info().get_icon(), icon_size: PANEL_ICON_SIZE });
         this._iconBox.set_child(icon);
     },
     
