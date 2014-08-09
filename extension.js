@@ -68,10 +68,10 @@ const TopPanelButton = new Lang.Class({
         childBox.y2 = allocHeight;
 
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = Math.floor(iconWidth + 13);
-            childBox.x2 = Math.floor(iconWidth + 13) + Math.min(childBox.x1 + naturalWidth, allocWidth);
+            childBox.x1 = Math.floor(iconWidth + 14);
+            childBox.x2 = Math.floor(iconWidth + 14) + Math.min(childBox.x1 + naturalWidth, allocWidth);
         } else {
-            childBox.x2 = allocWidth - Math.floor(iconWidth + 13);
+            childBox.x2 = allocWidth - Math.floor(iconWidth + 14);
             childBox.x1 = Math.max(0, childBox.x2 - naturalWidth);
         }
         this._hbox.allocate(childBox, flags);
