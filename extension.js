@@ -5,10 +5,13 @@
 */
 
 const Clutter = imports.gi.Clutter;
+const GLib = imports.gi.GLib;
+const Gtk = imports.gi.Gtk;
 const Lang = imports.lang;
 const Main = imports.ui.main;
 const Panel = imports.ui.panel;
 const PanelMenu = imports.ui.panelMenu;
+const St = imports.gi.St;
 
 const PANEL_ICON_SIZE = 24;
 
@@ -25,7 +28,9 @@ const TopPanelButton = new Lang.Class({
         if (!this._targetApp)
             return;
 
-        let icon = this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction);
+		let currentApp = this._targetApp.get_app_info()
+        let icon = new St.Icon({ gicon: currentApp.get_icon(),
+                         icon_size: PANEL_ICON_SIZE });
         this._iconBox.set_child(icon);
     },
     
