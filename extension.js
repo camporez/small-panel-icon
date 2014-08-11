@@ -2,6 +2,7 @@
     This code is based on https://github.com/emerinohdz/status-title-bar/blob/master/src/extension.js
     Author: Ian Camporez Brunelli <ian at camporez dot com>
     Project page: https://github.com/camporez/small-panel-icon
+    Many thanks to: aguslr (@ GitHub), Florian Müllner (@ Bugzilla) and csoriano89 (@ #gnome-shell)
 */
 
 const Clutter = imports.gi.Clutter;
@@ -11,7 +12,7 @@ const Panel = imports.ui.panel;
 const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 
-const PANEL_ICON_SIZE = 24;
+const PANEL_ICON_SIZE = Math.floor(Main.panel.actor.height - 3);
 
 const TopPanelButton = new Lang.Class({
     Name: 'TopPanelButton',
