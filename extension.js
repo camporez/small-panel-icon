@@ -12,7 +12,7 @@ const Panel = imports.ui.panel;
 const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 
-const PANEL_ICON_SIZE = Math.floor(Main.panel.actor.height - 3);
+const PANEL_ICON_SIZE = Main.panel.actor.height - 3;
 
 const TopPanelButton = new Lang.Class({
     Name: 'TopPanelButton',
@@ -87,7 +87,7 @@ const TopPanel = new Lang.Class({
         this._replaceAppMenu(new TopPanelButton(Main.panel));
     },
 
-disable: function() {
+    disable: function() {
         this._replaceAppMenu(new Panel.AppMenuButton(Main.panel));
     },
 
