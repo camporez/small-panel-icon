@@ -1,7 +1,7 @@
-.panel-button #appMenuIcon {
-	app-icon-bottom-clip: 0px;
+.label-shadow {
+	color: transparent;
 }
 
-.label-shadow {
-	color: rgba(0,0,0,0.0);
+.panel-button #appMenuIcon {
+	app-icon-bottom-clip: 0px;
 }
