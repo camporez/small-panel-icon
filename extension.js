@@ -2,7 +2,7 @@
     This code is based on https://github.com/emerinohdz/status-title-bar/blob/master/src/extension.js
     Author: Ian Camporez Brunelli <ian at camporez dot com>
     Project page: https://github.com/camporez/small-panel-icon
-    Many thanks to: aguslr (@ GitHub), Florian Müllner (@ Bugzilla) and csoriano89 (@ #gnome-shell)
+    Many thanks to: aguslr (@ GitHub), Florian Müllner (@ Bugzilla), csoriano89 (@ #gnome-shell) and chpii (@ GitHub)
 */
 
 const Clutter = imports.gi.Clutter;
@@ -25,10 +25,14 @@ const TopPanelButton = new Lang.Class({
 
     _syncIcon: function() {
         if (!this._targetApp)
-            return;
+		return;
 
-        let icon = new St.Icon({ gicon: this._targetApp.get_app_info().get_icon(), icon_size: PANEL_ICON_SIZE });
-        this._iconBox.set_child(icon);
+	let app = this._targetApp.get_app_info();
+	if ( app != null ) {
+		this._iconBox.set_child(new St.Icon({ gicon: app.get_icon(), icon_size: PANEL_ICON_SIZE }));
+	} else {
+		this._iconBox.set_child(this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction));
+	}
     },
     
     _getContentPreferredWidth: function(actor, forHeight, alloc) {
