@@ -12,7 +12,7 @@ const Panel = imports.ui.panel;
 const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 
-const PANEL_ICON_SIZE = Main.panel.actor.height - 3;
+const PANEL_ICON_SIZE = Main.panel.actor.height - 4;
 
 const TopPanelButton = new Lang.Class({
     Name: 'TopPanelButton',
@@ -28,7 +28,7 @@ const TopPanelButton = new Lang.Class({
 		return;
 
 	let app = this._targetApp.get_app_info();
-	if ( app != null ) {
+	if (app != null) {
 		this._iconBox.set_child(new St.Icon({ gicon: app.get_icon(), icon_size: PANEL_ICON_SIZE }));
 	} else {
 		this._iconBox.set_child(this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction));
