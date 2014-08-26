@@ -60,8 +60,8 @@ const TopPanelButton = new Lang.Class({
             childBox.x1 = 10;
             childBox.x2 = childBox.x1 + Math.min(naturalWidth, allocWidth);
         } else {
-            childBox.x1 = Math.max(10, allocWidth - naturalWidth);
-            childBox.x2 = allocWidth;
+            childBox.x1 = Math.max(10, allocWidth - naturalWidth - 10);
+            childBox.x2 = allocWidth - 10;
         }
         this._iconBox.allocate(childBox, flags);
 
