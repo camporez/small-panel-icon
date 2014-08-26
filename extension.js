@@ -13,6 +13,7 @@ const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 
 const PANEL_ICON_SIZE = Main.panel.actor.height - 4;
+const PANEL_ICON_MARG = 10;
 
 const TopPanelButton = new Lang.Class({
     Name: 'TopPanelButton',
@@ -57,11 +58,11 @@ const TopPanelButton = new Lang.Class({
         childBox.y1 = yPadding;
         childBox.y2 = childBox.y1 + Math.min(naturalHeight, allocHeight);
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = 10;
+            childBox.x1 = PANEL_ICON_MARG;
             childBox.x2 = childBox.x1 + Math.min(naturalWidth, allocWidth);
         } else {
-            childBox.x1 = Math.max(10, allocWidth - naturalWidth - 10);
-            childBox.x2 = allocWidth - 10;
+            childBox.x1 = Math.max(PANEL_ICON_MARG, allocWidth - naturalWidth - PANEL_ICON_MARG);
+            childBox.x2 = allocWidth - PANEL_ICON_MARG;
         }
         this._iconBox.allocate(childBox, flags);
 
@@ -73,10 +74,10 @@ const TopPanelButton = new Lang.Class({
         childBox.y2 = allocHeight;
 
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = Math.floor(iconWidth + 14);
-            childBox.x2 = Math.floor(iconWidth + 14) + Math.min(childBox.x1 + naturalWidth, allocWidth);
+            childBox.x1 = Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG);
+            childBox.x2 = Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG) + Math.min(childBox.x1 + naturalWidth, allocWidth);
         } else {
-            childBox.x2 = allocWidth - Math.floor(iconWidth + 14);
+            childBox.x2 = allocWidth - Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG);
             childBox.x1 = Math.max(0, childBox.x2 - naturalWidth);
         }
         this._hbox.allocate(childBox, flags);
