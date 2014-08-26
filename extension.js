@@ -12,8 +12,9 @@ const Panel = imports.ui.panel;
 const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 
-const PANEL_ICON_SIZE = Main.panel.actor.height - 4;
+const PANEL_ICON_SIZE = Math.min(Main.panel.actor.height - 2, 24);
 const PANEL_ICON_MARG = 10;
+const PANEL_ICON_PADG = 5;
 
 const TopPanelButton = new Lang.Class({
     Name: 'TopPanelButton',
@@ -26,20 +27,20 @@ const TopPanelButton = new Lang.Class({
 
     _syncIcon: function() {
         if (!this._targetApp)
-		return;
+            return;
 
-	let app = this._targetApp.get_app_info();
-	if (app != null) {
-		this._iconBox.set_child(new St.Icon({ gicon: app.get_icon(), icon_size: PANEL_ICON_SIZE }));
-	} else {
-		this._iconBox.set_child(this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction));
-	}
+        let app = this._targetApp.get_app_info();
+        if (app != null) {
+            this._iconBox.set_child(new St.Icon({ gicon: app.get_icon(), icon_size: PANEL_ICON_SIZE }));
+        } else {
+            this._iconBox.set_child(this._targetApp.get_faded_icon(PANEL_ICON_SIZE, this._iconBox.text_direction));
+        }
     },
     
     _getContentPreferredWidth: function(actor, forHeight, alloc) {
         let [minSize, naturalSize] = this._iconBox.get_preferred_width(forHeight);
-        alloc.min_size = minSize + Math.floor(PANEL_ICON_SIZE * 2) + 20;
-        alloc.natural_size = naturalSize + Math.floor(PANEL_ICON_SIZE * 2) + 20;
+        alloc.min_size = minSize + PANEL_ICON_SIZE + Math.floor(PANEL_ICON_MARG * 4) + PANEL_ICON_PADG;
+        alloc.natural_size = naturalSize + PANEL_ICON_SIZE + Math.floor(PANEL_ICON_MARG * 4) + PANEL_ICON_PADG;
         [minSize, naturalSize] = this._hbox.get_preferred_width(forHeight);
         alloc.min_size = alloc.min_size + Math.max(0, minSize - Math.floor(alloc.min_size / 2));
         alloc.natural_size = alloc.natural_size + Math.max(0, naturalSize - Math.floor(alloc.natural_size / 2));
@@ -74,15 +75,14 @@ const TopPanelButton = new Lang.Class({
         childBox.y2 = allocHeight;
 
         if (direction == Clutter.TextDirection.LTR) {
-            childBox.x1 = Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG);
-            childBox.x2 = Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG) + Math.min(childBox.x1 + naturalWidth, allocWidth);
+            childBox.x1 = iconWidth + PANEL_ICON_MARG + PANEL_ICON_PADG;
+            childBox.x2 = iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG + Math.min(childBox.x1 + naturalWidth, allocWidth);
         } else {
             childBox.x2 = allocWidth - Math.floor(iconWidth + PANEL_ICON_SIZE - PANEL_ICON_MARG);
             childBox.x1 = Math.max(0, childBox.x2 - naturalWidth);
         }
         this._hbox.allocate(childBox, flags);
-    },
-
+    }
 });
 
 const TopPanel = new Lang.Class({
@@ -122,5 +122,4 @@ function enable() {
 
 function disable() {
     SmallPanelIcon.disable();
-
 }
